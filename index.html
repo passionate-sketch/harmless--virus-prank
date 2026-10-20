@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Scanner</title>
+
+<style>
+body {
+    background: #090909;
+    color: #ff3333;
+    font-family: monospace;
+    text-align: center;
+    padding: 25px 12px;
+}
+.box {
+    border: 2px solid red;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 420px;
+    margin: 40px auto;
+}
+h1 {
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    50% { opacity: 0.3; }
+}
+.bar {
+    border: 1px solid red;
+    height: 22px;
+    margin-top: 25px;
+}
+#progress {
+    background: red;
+    height: 100%;
+    width: 0%;
+}
+button {
+    background: #ff3333;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+}
+#result {
+    color: #55ff88;
+    display: none;
+    margin-top: 25px;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+    <h1>⚠ SECURITY ALERT ⚠</h1>
+    <p>SIMULATED VIRUS SCANNER</p>
+    <p id="status">Ready to scan your device?</p>
+
+    <div class="bar">
+        <div id="progress"></div>
+    </div>
+
+    <p id="percent">0%</p>
+    <button id="start" onclick="scan()">START SIMULATION</button>
+
+    <div id="result">
+        <h2>😂 GOT YOU!</h2>
+        <p>This was only a harmless prank!</p>
+        <p>Your files have not been scanned or changed.</p>
+    </div>
+</div>
+
+<script>
+function scan() {
+    const button = document.getElementById("start");
+    const progress = document.getElementById("progress");
+    const percent = document.getElementById("percent");
+    const status = document.getElementById("status");
+    const result = document.getElementById("result");
+
+    button.disabled = true;
+    button.textContent = "SIMULATION RUNNING...";
+
+    let value = 0;
+
+    const timer = setInterval(() => {
+        value += 2;
+        progress.style.width = value + "%";
+        percent.textContent = value + "%";
+        status.textContent = "Simulating a security scan...";
+
+        if (value >= 100) {
+            clearInterval(timer);
+            status.textContent = "Simulation complete!";
+            result.style.display = "block";
+            button.textContent = "PRANK COMPLETE";
+        }
+    }, 100);
+}
+</script>
+</body>
+</html>
